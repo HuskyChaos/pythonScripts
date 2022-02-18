@@ -1,10 +1,10 @@
 #!/bin/python
 
 from distutils.filelist import findall
-from gettext import find
 import urllib.request
 from bs4 import BeautifulSoup
 from bs4 import Comment
+import argparse
 
 
 def urlCheck(url):
@@ -30,8 +30,11 @@ def openUrl(url):
         print(comments)
 
 try:
-    url = input()
-    urlCheck(url)
+    parser = argparse.ArgumentParser(description='Fetch comments and anchor tags from a website')
+    parser.add_argument('-u', '--url', type=str, help='URL to scrape')
+
+    arg = parser.parse_args()
+    urlCheck(arg.url)
 
 except Exception as e:
     print(e)
