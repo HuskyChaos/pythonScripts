@@ -19,10 +19,11 @@ if r.status_code < 400:
     try:
         driver.get(url)
         print("Python Waiting for web page to finish loading...")
-        for i in range(10,0,-1):
-            print("{}....".format(i))
-            time.sleep(1)
+        print("Wait for 5 seconds...")
+        time.sleep(5)
         print()
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(2)
         ids = driver.find_elements_by_tag_name('section')
         count = 0
         for id in ids:
@@ -45,9 +46,8 @@ else:
     try:
         driver.get(url)
         print("Python Waiting for web page to finish loading...")
-        for i in range(10,0,-1):
-            print("{}....".format(i))
-            time.sleep(1)
+        print("Wait for 5 seconds...")
+        time.sleep(5)
         print()
         count = 0
         classes = driver.find_elements_by_class_name('gig_cards')
