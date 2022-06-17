@@ -31,22 +31,25 @@ else:
             if i.text != '':
                 count+=1
         for i in range(count):
+            print("Course number : {}".format(i+1))
             classes = driver.find_elements_by_class_name('gig_cards')
             count2 = 0
             for c in classes:
                 if c.text != '':
                     if count2 == i:
                         temp = c.text.split('\n')
-                        print(temp[0])
+                        print("Course Name : {}".format(temp[0]))
                         for i in temp:
                             if 'Starts' in i:
-                                print(i)
+                                i = i.split()
+                                i = i[len(i)-1].split('$')
+                                print("Course Price : Starts at ${}".format(i[len(i)-1]))
                         c.click()
                         time.sleep(2)
-                        print(driver.current_url)
+                        print("Course URL : {}".format(driver.current_url))
                         driver.execute_script("window.history.go(-1)")
-                        time.sleep(2)
                         print ('--------------------------------------------------')
+                        time.sleep(2)
                         break
                     count2+=1
         driver.quit()
