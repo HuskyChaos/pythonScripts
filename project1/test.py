@@ -5,13 +5,14 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 
+profile_path = r'/home/kali/.mozilla/firefox/06au6nqy.default'
+options=Options()
+
 url = "https://nbl.one"
 print("URL for question search: {}".format(url))
 r = requests.get(url)
 if r.status_code < 400:
     try:
-        profile_path = r'/home/kali/.mozilla/firefox/06au6nqy.default'
-        options=Options()
         options.set_preference('profile', profile_path)
         service = Service(r'./geckodriver')
         driver = Firefox(service=service, options=options)
@@ -44,8 +45,6 @@ if r.status_code >= 400:
     exit(r.reason)
 else:
     try:
-        profile_path = r'/home/kali/.mozilla/firefox/06au6nqy.default'
-        options=Options()
         options.set_preference('profile', profile_path)
         service = Service(r'./geckodriver')
         driver = Firefox(service=service, options=options)
@@ -96,8 +95,6 @@ if r.status_code >= 400:
     exit(r.reason)
 else:
     try:
-        profile_path = r'/home/kali/.mozilla/firefox/06au6nqy.default'
-        options=Options()
         options.set_preference('profile', profile_path)
         service = Service(r'./geckodriver')
         driver = Firefox(service=service, options=options)
