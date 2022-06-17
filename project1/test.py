@@ -11,14 +11,38 @@ profile_path = r'/home/kali/.mozilla/firefox/06au6nqy.default'
 options=Options()
 options.set_preference('profile', profile_path)
 service = Service(r'./geckodriver')
-url = "https://nbl.one/listings"
+driver = Firefox(service=service, options=options)
 
+url = "https://nbl.one"
+r = requests.get(url)
+if r.status_code < 400:
+    try:
+        driver.get(url)
+        print("Python Waiting for web page to finish loading...")
+        for i in range(10,0,-1):
+            print("{}....".format(i))
+            time.sleep(1)
+        print()
+        ids = driver.find_elements_by_tag_name('section')
+        count = 0
+        for id in ids:
+            if 'quest' in id.get_attribute('id'):
+                count+=1
+        if count > 0:
+            print("{} questions available.".format(count))
+        else:
+            print("No questions available.")
+        print()
+
+    except Exception as e:
+        print(e)
+
+url = "https://nbl.one/listings"
 r = requests.get(url)
 if r.status_code >= 400:
     exit(r.reason)
 else:
     try:
-        driver = Firefox(service=service, options=options)
         driver.get(url)
         print("Python Waiting for web page to finish loading...")
         for i in range(10,0,-1):
