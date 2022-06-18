@@ -36,6 +36,7 @@ if r.status_code < 400:
         driver.quit()
 
     except Exception as e:
+        driver.quit()
         print(e)
 
 url = "https://nbl.one/listings"
@@ -82,10 +83,12 @@ else:
                     count2+=1
         driver.quit()
     except Exception as e:
+        driver.quit()
         print(e)
 
 url = "https://nby.la/rdJuXp"
 print("URL for course booking: {}".format(url))
+print()
 print("Enter email ID: ", end='')
 emailId = input()
 print("Enter password: ",end='')
@@ -106,10 +109,10 @@ else:
         driver.implicitly_wait(2)
         driver.switch_to.window(driver.window_handles[1])
         time.sleep(2)
-        driver.find_element_by_tag_name('input').send_keys('vikashkumar.cse19@chitkarauniversity.edu.in')
+        driver.find_element_by_tag_name('input').send_keys(emailId)
         driver.find_element_by_xpath('//span[text()="Next"]').click()
         time.sleep(8)
-        driver.find_element_by_xpath('//input[@type="password"]').send_keys('gujgiH-vanpa4-nywvaq')
+        driver.find_element_by_xpath('//input[@type="password"]').send_keys(passwd)
         driver.find_element_by_xpath('//span[text()="Next"]').click()
         time.sleep(4)
         driver.switch_to.window(driver.window_handles[0])
@@ -131,4 +134,6 @@ else:
         time.sleep(8)
         driver.quit()
     except Exception as e:
+        driver.quit()
         print(e)
+        
