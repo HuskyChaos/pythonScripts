@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 #Timing attack to enumerate username
 
 import requests

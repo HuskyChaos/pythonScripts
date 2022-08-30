@@ -1,5 +1,3 @@
-#!/bin/python
-
 from distutils.filelist import findall
 import urllib.request
 from bs4 import BeautifulSoup
