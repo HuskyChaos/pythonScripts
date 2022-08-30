@@ -1,16 +1,9 @@
-def generateTextFile(wordList, fileName):
-    myWordList = open(f"./{fileName}.txt", "w")
-    for i in wordList:
-        myWordList.write(f'{i}\n')
-    myWordList.close()
-    
-
 def option1 (charSet):
     newList = charSet
     tempList = list()
     mixedList = list()
     num=0
-
+    myWordlist = open(f"./custom_char_wl.txt", "w")
     while(num<len(charSet)):
         for i in newList:
             mixedList.append(i)
@@ -24,16 +17,18 @@ def option1 (charSet):
     for word in mixedList:
         if word not in wordList:
             wordList.append(word)
-    generateTextFile(wordList, "custom_char_wl")
+    for word in wordList:
+        myWordlist.write(f'{word}\n')
+    myWordlist.close()
 
 def option2 (charLen, charSet):
-    wordList = list()
+    myWordList = open("./custom_len_wl.txt", "w")
     word=""
     tempWord = list()
     for i in range(charLen):
         tempWord.append(0)
         word+=charSet[0]
-    wordList.append(word)
+    myWordList.write(f'{word}\n')
     while True:
         if tempWord[charLen-1] < 94:
             tempWord[charLen-1]+=1
@@ -50,8 +45,8 @@ def option2 (charLen, charSet):
         word = "" 
         for j in tempWord:
             word+=charSet[j]
-        wordList.append(word)
-    generateTextFile(wordList, "word_length_wl")
+        myWordList.write(f'{word}\n')
+    myWordList.close()
 
 def option3 (charSet):
     newList = charSet
