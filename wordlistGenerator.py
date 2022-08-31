@@ -6,19 +6,14 @@ def option1 (charSet):
     myWordlist = open(f"./custom_char_wl.txt", "w")
     while(num<len(charSet)):
         for i in newList:
-            mixedList.append(i)
+            if i not in mixedList:
+                mixedList.append(i)
+                myWordlist.write(f'{i}\n')
             for j in charSet:
                 tempList.append(i+j)
         newList=tempList
         tempList=list()
         num+=1
-
-    wordList = list()
-    for word in mixedList:
-        if word not in wordList:
-            wordList.append(word)
-    for word in wordList:
-        myWordlist.write(f'{word}\n')
     myWordlist.close()
 
 def option2 (charLen, charSet):
@@ -30,14 +25,14 @@ def option2 (charLen, charSet):
         word+=charSet[0]
     myWordList.write(f'{word}\n')
     while True:
-        if tempWord[charLen-1] < 94:
+        if tempWord[charLen-1] < len(charSet)-1:
             tempWord[charLen-1]+=1
         elif sum(tempWord) == 94*charLen:
             break
         else:
             tempWord[charLen-1] = 0
             for i in range(charLen-2, -1, -1):
-                if tempWord[i] < 94:
+                if tempWord[i] < len(charSet)-1:
                     tempWord[i]+=1
                     break
                 else:
