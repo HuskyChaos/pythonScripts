@@ -58,10 +58,28 @@ def option3 (charSet):
         num+=1
     myWordList.close()
 
+def option4(charSet, minLen, maxLen):
+    newList = charSet
+    tempList = list()
+    num=0
+    myWordList = open("./min_max_wl.txt", "w")
+    while(num<len(charSet)):
+        for i in newList:
+            if len(i)<=maxLen and len(i)>=minLen:
+                myWordList.write(f'{i}\n')
+            elif len(i) > maxLen:
+                break
+            for j in charSet:
+                tempList.append(i+j)
+        newList=tempList
+        tempList=list()
+        num+=1
+    myWordList.close()
+
 def main ():
     charSet = list("""abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()_+=-,./';][<>?":|}{\\ """)
     while True:
-        option = input("""1. Enter custom characters\n2. Enter a word length.\n3. Use pre-existing character set\n   (word length starts from 1 ends at 97)\n   (Choose wisely)\n4. Enter q to Exit!\n\n Option number: """)
+        option = input("""1. Enter custom characters\n2. Enter a word length.\n3. Use pre-existing character set\n   (word length starts from 1 ends at 97)\n   (Choose wisely)\n4. Use <min> and <max> length\n5. Enter q to Exit!\n\n Option number: """)
         if option == "1":
             charSet = list(input("Enter characters (space will be considered a character): \n"))
             option1(charSet)
@@ -72,6 +90,11 @@ def main ():
         
         elif option == "3":
             option3(charSet)
+        
+        elif option == "4":
+            minLen = int(input("Enter <min> length: "))
+            maxLen = int(input("Enter <max> length: "))
+            option4(charSet, minLen, maxLen)
 
         elif option == "q":
             quit(f"\n\t====Thanks for using WORDLIST GENERATOR====\n")
