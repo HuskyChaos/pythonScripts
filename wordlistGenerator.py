@@ -27,7 +27,7 @@ def option2 (charLen, charSet):
     while True:
         if tempWord[charLen-1] < len(charSet)-1:
             tempWord[charLen-1]+=1
-        elif sum(tempWord) == 94*charLen:
+        elif sum(tempWord) == (len(charSet)-1)*charLen:
             break
         else:
             tempWord[charLen-1] = 0
