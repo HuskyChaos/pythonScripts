@@ -24,7 +24,7 @@ def option2 (charLen, charSet):
         tempWord.append(0)
         word+=charSet[0]
     myWordList.write(f'{word}\n')
-    while sum(tempWord) <= (len(charSet)-1)*charLen:
+    while sum(tempWord) < (len(charSet)-1)*charLen:
         if tempWord[charLen-1] < len(charSet)-1:
             tempWord[charLen-1]+=1
         else:
