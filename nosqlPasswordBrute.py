@@ -46,6 +46,5 @@ while pLength:
             numb+=1
             print(myData)
             break
-print(myData)
 print(f'Password = {password}\nData: {myData[:10+len(uName)]}={password}{myData[-12:]}')
 
